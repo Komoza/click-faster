@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
 
 export const GameField = () => {
-    const sizePoint: number = 10;
+    const sizePoint: number = 100;
     interface Point {
         x: number | null;
         y: number | null;
@@ -12,13 +12,17 @@ export const GameField = () => {
     const [point, setPoint] = useState<Point>({ x: null, y: null });
     const gameFieldRef = useRef<HTMLDivElement>(null);
 
-    const getRandomPoint = () => {
+    const getRandomPoint = (
+        event?: React.MouseEvent<HTMLDivElement, MouseEvent>
+    ) => {
+        if (event) {
+            event.stopPropagation();
+        }
         if (gameFieldRef.current) {
             const gameFieldWidth =
                 gameFieldRef.current.offsetWidth - sizePoint - 10;
             const gameFieldHeight =
                 gameFieldRef.current.offsetHeight - sizePoint - 10;
-            console.log(gameFieldWidth, gameFieldHeight);
 
             const randomX =
                 Math.floor(Math.random() * (gameFieldWidth - sizePoint - 10)) +
@@ -33,13 +37,18 @@ export const GameField = () => {
         }
     };
 
-    const start = () => {
+    const start = (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.stopPropagation();
         getRandomPoint();
         setIsStarted(true);
     };
+    const mistake = () => {
+        getRandomPoint();
+        console.log('ошибка'); // заменить на мерцание экрана красный цвет
+    };
 
     return (
-        <div ref={gameFieldRef} className="game-field">
+        <div ref={gameFieldRef} className="game-field" onClick={mistake}>
             {!isStarted && (
                 <button className="game-field__start-button" onClick={start}>
                     Start
@@ -48,7 +57,7 @@ export const GameField = () => {
             {point.x !== null && point.y !== null && (
                 <div
                     className="game-field__point"
-                    onClick={getRandomPoint}
+                    onClick={(event) => getRandomPoint(event)}
                     style={{
                         width: `${sizePoint}px`,
                         height: `${sizePoint}px`,
