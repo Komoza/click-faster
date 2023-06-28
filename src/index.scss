@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    padding: 0 50px 20px;
+    width: 100vw;
+    height: 100vh;
+    background: #232730;
+    overflow: hidden;
+}
+
+@import './components/header/header';
+@import './components/game-field/GameField'

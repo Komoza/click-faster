@@ -1,0 +1,59 @@
+.mouse-trail {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: blue;
+    pointer-events: none; /* чтобы след мыши не влиял на интерактивность */
+    transition: all 0.2s ease; /* добавление плавного перехода */
+  }
+  
+  .mouse-trail::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: lightblue;
+    opacity: 0;
+    transition: opacity 0.2s ease; /* плавное исчезновение следа */
+  }
+  
+  .mouse-trail:hover {
+    transform: scale(1.5); /* увеличение размера следа при наведении */
+  }
+  
+  .mouse-trail:hover::after {
+    opacity: 1; /* отображение следа при наведении */
+  }
+
+  
+  .mouse-trail-container {
+    position: relative;
+    height: 100vh;
+  }
+  
+  .mouse-trail {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: blue;
+    opacity: 0.5;
+    animation: mouse-trail-animation .001s linear forwards;
+  }
+  
+  @keyframes mouse-trail-animation {
+    from {
+      transform: scale(0);
+      opacity: 0.5;
+    }
+    to {
+      transform: scale(1);
+      opacity: 0;
+    }
+  }
+  
