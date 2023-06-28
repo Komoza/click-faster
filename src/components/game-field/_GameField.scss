@@ -1,7 +1,32 @@
 .game-field {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border: 1px solid #eee;
     width: 100%;
     border-radius: 5px;
     background: #303542;
     flex: 1;
+    position: relative;
+
+    &__start-button {
+        border: 0;
+        font-size: 32px;
+        padding: 5px 80px;
+        border-radius: 5px;
+        background-color: #9d32ff;
+        color: #fff;
+        cursor: pointer;
+
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+    &__point {
+        border-radius: 50%;
+        position: absolute;
+        background: #9d32ff;
+        box-shadow: 0 0 2px 5px #9c32ffd6;
+        cursor: pointer;
+    }
 }
