@@ -1,34 +1,29 @@
-import { useState, useEffect } from 'react';
+interface HeaderProps {
+    timer: number;
+    counter: number;
+    setTimer: React.Dispatch<React.SetStateAction<number>>;
+    setCounter: React.Dispatch<React.SetStateAction<number>>;
+}
 
-export const Header = () => {
-    const [timer, setTimer] = useState<number>(0);
-    const [counter, setCounter] = useState<number>(0);
+const formatTime = (time: number) => {
+    const minutes = Math.floor(time / 60)
+        .toString()
+        .padStart(2, '0');
+    const seconds = (time % 60).toString().padStart(2, '0');
+    return `${minutes}:${seconds}`;
+};
 
+export const Header: React.FC<HeaderProps> = ({
+    timer,
+    counter,
+    setTimer,
+    setCounter,
+}) => {
     const restartGame = () => {
         setTimer(0);
         setCounter(0);
     };
 
-    useEffect(() => {
-        let intervalId: ReturnType<typeof setInterval>;
-        const updateTimer = () => {
-            setTimer((prevTimer) => prevTimer + 1);
-        };
-
-        intervalId = setInterval(updateTimer, 1000);
-
-        return () => {
-            clearInterval(intervalId);
-        };
-    }, []);
-
-    const formatTime = (time: number) => {
-        const minutes = Math.floor(time / 60)
-            .toString()
-            .padStart(2, '0');
-        const seconds = (time % 60).toString().padStart(2, '0');
-        return `${minutes}:${seconds}`;
-    };
     return (
         <header className="header">
             <h1 className="header__logo">CLICK FASTER</h1>
