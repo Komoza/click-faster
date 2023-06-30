@@ -19,7 +19,7 @@ export const GameField: React.FC<GameFieldProps> = ({
     counter,
     setCounter,
 }) => {
-    const sizePoint: number = 100;
+    const sizePoint: number = 50;
 
     const [isStarted, setIsStarted] = useState<boolean>(false);
     const [isMiss, setIsMiss] = useState<boolean>(false);
@@ -41,9 +41,9 @@ export const GameField: React.FC<GameFieldProps> = ({
         setIsClick(true);
         setClickAnimation({ x: offsetX, y: offsetY });
 
-        setTimeout (() => {
+        setTimeout(() => {
             setIsClick(false);
-        }, 200)
+        }, 200);
     };
 
     const animatePoint = () => {
@@ -61,18 +61,13 @@ export const GameField: React.FC<GameFieldProps> = ({
     const setRandomPoint = () => {
         if (gameFieldRef.current) {
             const gameFieldWidth =
-                gameFieldRef.current.offsetWidth - sizePoint - 10;
+                gameFieldRef.current.offsetWidth - sizePoint - 2;
             const gameFieldHeight =
-                gameFieldRef.current.offsetHeight - sizePoint - 10;
+                gameFieldRef.current.offsetHeight - sizePoint - 2;
 
-            const randomX =
-                Math.floor(Math.random() * (gameFieldWidth - sizePoint - 10)) +
-                sizePoint +
-                10;
-            const randomY =
-                Math.floor(Math.random() * (gameFieldHeight - sizePoint - 10)) +
-                sizePoint +
-                10;
+            console.log(gameFieldWidth, gameFieldHeight);
+            const randomX = Math.floor(Math.random() * (gameFieldWidth + 1));
+            const randomY = Math.floor(Math.random() * (gameFieldHeight + 1));
 
             setPoint({ x: randomX, y: randomY });
         }
