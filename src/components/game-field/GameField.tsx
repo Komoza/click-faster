@@ -1,15 +1,21 @@
 import { useState, useRef } from 'react';
 
-interface GameFieldProps {
-    counter: number;
-    setCounter: React.Dispatch<React.SetStateAction<number>>;
-    startTimer: () => void;
-}
-
 interface Point {
     x: number | null;
     y: number | null;
 }
+
+interface GameFieldProps {
+    counter: number;
+    setCounter: React.Dispatch<React.SetStateAction<number>>;
+    startTimer: () => void;
+    isStarted: boolean;
+    setIsStarted: React.Dispatch<React.SetStateAction<boolean>>;
+    point: Point;
+    setPoint: React.Dispatch<React.SetStateAction<Point>>;
+}
+
+
 interface Click {
     x: number | null;
     y: number | null;
@@ -18,12 +24,15 @@ export const GameField: React.FC<GameFieldProps> = ({
     startTimer,
     counter,
     setCounter,
+    isStarted,
+    setIsStarted,
+    point,
+    setPoint,
 }) => {
     const sizePoint: number = 50;
 
-    const [isStarted, setIsStarted] = useState<boolean>(false);
     const [isMiss, setIsMiss] = useState<boolean>(false);
-    const [point, setPoint] = useState<Point>({ x: null, y: null });
+    // const [point, setPoint] = useState<Point>({ x: null, y: null });
 
     const [isClick, setIsClick] = useState<boolean>(false);
     const [clickAnimation, setClickAnimation] = useState<Click>({
