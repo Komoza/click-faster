@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Header } from './components/header/header';
 import { GameField } from './components/game-field/GameField';
+// import { MainWindow } from './components/main-window/MainWindow';
 
 interface Point {
     x: number | null;
@@ -39,6 +40,7 @@ function App() {
 
     return (
         <>
+            {/* <MainWindow /> */}
             <Header
                 timer={timer}
                 counter={counter}

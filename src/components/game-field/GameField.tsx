@@ -15,7 +15,6 @@ interface GameFieldProps {
     setPoint: React.Dispatch<React.SetStateAction<Point>>;
 }
 
-
 interface Click {
     x: number | null;
     y: number | null;
@@ -29,10 +28,9 @@ export const GameField: React.FC<GameFieldProps> = ({
     point,
     setPoint,
 }) => {
-    const sizePoint: number = 50;
+    const sizePoint: number = 25;
 
     const [isMiss, setIsMiss] = useState<boolean>(false);
-    // const [point, setPoint] = useState<Point>({ x: null, y: null });
 
     const [isClick, setIsClick] = useState<boolean>(false);
     const [clickAnimation, setClickAnimation] = useState<Click>({
@@ -74,7 +72,6 @@ export const GameField: React.FC<GameFieldProps> = ({
             const gameFieldHeight =
                 gameFieldRef.current.offsetHeight - sizePoint - 2;
 
-            console.log(gameFieldWidth, gameFieldHeight);
             const randomX = Math.floor(Math.random() * (gameFieldWidth + 1));
             const randomY = Math.floor(Math.random() * (gameFieldHeight + 1));
 
