@@ -11,6 +11,7 @@ interface HeaderProps {
     stopTimer: () => void;
     setIsStarted: React.Dispatch<React.SetStateAction<boolean>>;
     setPoint: React.Dispatch<React.SetStateAction<Point>>;
+    setDisplay: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const formatTime = (time: number) => {
@@ -29,6 +30,7 @@ export const Header: React.FC<HeaderProps> = ({
     stopTimer,
     setIsStarted,
     setPoint,
+    setDisplay,
 }) => {
     const restartGame = () => {
         setTimer(0);
@@ -37,6 +39,10 @@ export const Header: React.FC<HeaderProps> = ({
         setIsStarted(false);
         setPoint({ x: null, y: null });
     };
+
+    const goToMain = () => {
+        setDisplay('main');
+    }
     return (
         <header className="header">
             <h1 className="header__logo">CLICK FASTER</h1>
@@ -49,7 +55,7 @@ export const Header: React.FC<HeaderProps> = ({
                 <button className="header__restart" onClick={restartGame}>
                     Restart
                 </button>
-                <button className="header__new-game">New game</button>
+                <button onClick={goToMain} className="header__main-menu">Main menu</button>
             </div>
         </header>
     );

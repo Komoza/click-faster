@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Header } from './components/header/header';
 import { GameField } from './components/game-field/GameField';
-// import { MainWindow } from './components/main-window/MainWindow';
+import { MainWindow } from './components/main-window/MainWindow';
 
 interface Point {
     x: number | null;
@@ -9,6 +9,8 @@ interface Point {
 }
 
 function App() {
+    const [display, setDisplay] = useState<string>('main');
+
     // timer
     const [timer, setTimer] = useState<number>(0);
     const [counter, setCounter] = useState<number>(0);
@@ -40,26 +42,31 @@ function App() {
 
     return (
         <>
-            {/* <MainWindow /> */}
-            <Header
-                timer={timer}
-                counter={counter}
-                setTimer={setTimer}
-                setCounter={setCounter}
-                stopTimer={stopTimer}
-                setIsStarted={setIsStarted}
-                setPoint={setPoint}
-            />
+            {display === 'main' && <MainWindow setDisplay={setDisplay} />}
+            {display === 'game' && (
+                <>
+                    <Header
+                        timer={timer}
+                        counter={counter}
+                        setTimer={setTimer}
+                        setCounter={setCounter}
+                        stopTimer={stopTimer}
+                        setIsStarted={setIsStarted}
+                        setPoint={setPoint}
+                        setDisplay={setDisplay}
+                    />
 
-            <GameField
-                startTimer={startTimer}
-                counter={counter}
-                setCounter={setCounter}
-                isStarted={isStarted}
-                setIsStarted={setIsStarted}
-                point={point}
-                setPoint={setPoint}
-            />
+                    <GameField
+                        startTimer={startTimer}
+                        counter={counter}
+                        setCounter={setCounter}
+                        isStarted={isStarted}
+                        setIsStarted={setIsStarted}
+                        point={point}
+                        setPoint={setPoint}
+                    />
+                </>
+            )}
         </>
     );
 }

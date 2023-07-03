@@ -1,9 +1,32 @@
 .main {
+    width: 100%;
+    height: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
 
-    &__text {
-        color: white;
+    &__logo {
+        color: #fff;
+        font-size: 64px;
+        text-align: center;
+    }
+    &__button-wrap {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 10px;
+    }
+    &__new-game,
+    &__setting {
+        font-size: 32px;
+        color: #fff;
+        border: 0;
+        background: none;
+        cursor: pointer;
+
+        &:hover {
+            color: rgba($color: #fff, $alpha: 0.8);
+        }
     }
 }
