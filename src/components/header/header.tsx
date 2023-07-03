@@ -41,11 +41,18 @@ export const Header: React.FC<HeaderProps> = ({
     };
 
     const goToMain = () => {
+        setTimer(0);
+        setCounter(0);
+        stopTimer();
+        setIsStarted(false);
+        setPoint({ x: null, y: null });
         setDisplay('main');
-    }
+    };
     return (
         <header className="header">
-            <h1 onClick={goToMain} className="header__logo">CLICK FASTER</h1>
+            <h1 onClick={goToMain} className="header__logo">
+                CLICK FASTER
+            </h1>
             <div className="header__info">
                 <div className="header__timer">{formatTime(timer)}</div>
                 <p className="header__delimiter">|</p>
@@ -55,7 +62,9 @@ export const Header: React.FC<HeaderProps> = ({
                 <button className="header__restart" onClick={restartGame}>
                     Restart
                 </button>
-                <button onClick={goToMain} className="header__main-menu">Main menu</button>
+                <button onClick={goToMain} className="header__main-menu">
+                    Main menu
+                </button>
             </div>
         </header>
     );

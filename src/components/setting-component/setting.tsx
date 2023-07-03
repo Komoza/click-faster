@@ -1,12 +1,29 @@
-import React from 'react';
+import { useState } from 'react';
 
 interface SettingProps {
     setDisplay: React.Dispatch<React.SetStateAction<string>>;
 }
 
+interface Preference {
+    sound: number;
+    theme: string;
+}
+
+const preference: Preference = {
+    sound: 0,
+    theme: 'dark',
+};
+
 export const Setting: React.FC<SettingProps> = ({ setDisplay }) => {
+    const [soundValue, setSoundValue] = useState<number>(0);
+
     const goToMain = () => {
         setDisplay('main');
+    };
+    const handleSetSoundValue = (
+        event: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        setSoundValue(Number(event.target.value));
     };
 
     return (
@@ -18,10 +35,11 @@ export const Setting: React.FC<SettingProps> = ({ setDisplay }) => {
                         type="range"
                         min="1"
                         max="100"
-                        value="50"
+                        value={soundValue}
+                        onChange={(event) => handleSetSoundValue(event)}
                         className="setting__sound-slider"
                     ></input>
-                    <div className="setting__sound-number">50%</div>
+                    <div className="setting__sound-number">{`${soundValue}%`}</div>
                 </div>
             </div>
             <div className="setting__theme">

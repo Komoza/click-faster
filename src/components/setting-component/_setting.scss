@@ -23,6 +23,7 @@
             font-size: 32px;
         }
         &-number {
+            width: 47px;
             font-size: 20px;
         }
     }
@@ -98,6 +99,8 @@
     &__buttons-wrap {
         margin-top: 50px;
         display: flex;
+        width: 350px;
+        justify-content: end;
         gap: 20px;
     }
 
