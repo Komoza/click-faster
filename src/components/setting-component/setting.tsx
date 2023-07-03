@@ -9,21 +9,39 @@ interface Preference {
     theme: string;
 }
 
-const preference: Preference = {
-    sound: 0,
-    theme: 'dark',
-};
+let preference: Preference = localStorage.getItem('preference')
+    ? JSON.parse(String(localStorage.getItem('preference')))
+    : {
+          sound: 100,
+          theme: 'dark',
+      };
 
 export const Setting: React.FC<SettingProps> = ({ setDisplay }) => {
-    const [soundValue, setSoundValue] = useState<number>(0);
+    const [soundValue, setSoundValue] = useState<number>(preference.sound);
+    const [isDark, setIsDark] = useState<boolean>(
+        preference.theme === 'dark' ? true : false
+    );
 
     const goToMain = () => {
+        preference = JSON.parse(String(localStorage.getItem('preference')));
         setDisplay('main');
     };
+
+    const applySettings = () => {
+        localStorage.setItem('preference', JSON.stringify(preference));
+        setDisplay('main');
+    };
+
     const handleSetSoundValue = (
         event: React.ChangeEvent<HTMLInputElement>
     ) => {
         setSoundValue(Number(event.target.value));
+        preference.sound = Number(event.target.value);
+    };
+
+    const handleChangeTheme = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setIsDark(event.target.checked);
+        preference.theme = !isDark ? 'dark' : 'light';
     };
 
     return (
@@ -47,7 +65,13 @@ export const Setting: React.FC<SettingProps> = ({ setDisplay }) => {
                 <div className="setting__value-wrap">
                     <div className="setting__theme-light">Light</div>
                     <label className="setting__theme-switch">
-                        <input type="checkbox"></input>
+                        <input
+                            onChange={(event) => {
+                                handleChangeTheme(event);
+                            }}
+                            checked={isDark}
+                            type="checkbox"
+                        ></input>
                         <span className="setting__theme-slider setting__theme-round"></span>
                     </label>
                     <div className="setting__theme-dark">Dark</div>
@@ -55,7 +79,9 @@ export const Setting: React.FC<SettingProps> = ({ setDisplay }) => {
             </div>
 
             <div className="setting__buttons-wrap">
-                <button className="setting__apply">apply</button>
+                <button onClick={applySettings} className="setting__apply">
+                    apply
+                </button>
                 <button onClick={goToMain} className="setting__cancel">
                     cancel
                 </button>
