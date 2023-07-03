@@ -63,7 +63,13 @@ export const Setting: React.FC<SettingProps> = ({ setDisplay }) => {
             <div className="setting__theme">
                 <div className="setting__theme-text">Theme</div>
                 <div className="setting__value-wrap">
-                    <div className="setting__theme-light">Light</div>
+                    <div
+                        className={`setting__theme-light ${
+                            !isDark ? '--active-theme' : ''
+                        }`}
+                    >
+                        Light
+                    </div>
                     <label className="setting__theme-switch">
                         <input
                             onChange={(event) => {
@@ -74,7 +80,13 @@ export const Setting: React.FC<SettingProps> = ({ setDisplay }) => {
                         ></input>
                         <span className="setting__theme-slider setting__theme-round"></span>
                     </label>
-                    <div className="setting__theme-dark">Dark</div>
+                    <div
+                        className={`setting__theme-dark ${
+                            isDark ? '--active-theme' : ''
+                        }`}
+                    >
+                        Dark
+                    </div>
                 </div>
             </div>
 
