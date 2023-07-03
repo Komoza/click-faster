@@ -6,6 +6,9 @@ export const MainWindow: React.FC<MainProps> = ({ setDisplay }) => {
     const startNewGame = () => {
         setDisplay('game');
     };
+    const goToSetting = () => {
+        setDisplay('setting');
+    };
 
     return (
         <div className="main">
@@ -14,7 +17,9 @@ export const MainWindow: React.FC<MainProps> = ({ setDisplay }) => {
                 <button onClick={startNewGame} className="main__new-game">
                     New game
                 </button>
-                <button className="main__setting">Setting</button>
+                <button onClick={goToSetting} className="main__setting">
+                    Setting
+                </button>
             </div>
         </div>
     );

@@ -45,7 +45,7 @@ export const Header: React.FC<HeaderProps> = ({
     }
     return (
         <header className="header">
-            <h1 className="header__logo">CLICK FASTER</h1>
+            <h1 onClick={goToMain} className="header__logo">CLICK FASTER</h1>
             <div className="header__info">
                 <div className="header__timer">{formatTime(timer)}</div>
                 <p className="header__delimiter">|</p>
