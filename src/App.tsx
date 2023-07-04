@@ -3,13 +3,25 @@ import { Header } from './components/header/header';
 import { GameField } from './components/game-field/GameField';
 import { MainWindow } from './components/main-window/MainWindow';
 import { Setting } from './components/setting-component/setting';
+import { preference } from './components/setting-component/setting';
 
 interface Point {
     x: number | null;
     y: number | null;
 }
 
+export const setTheme = (theme: string) => {
+    const root = document.getElementById('root');
+    if (root) {
+        root.classList.remove('dark-theme');
+        root.classList.remove('light-theme');
+
+        root.classList.add(`${theme}-theme`);
+    }
+};
+
 function App() {
+    setTheme(preference.theme);
     const [display, setDisplay] = useState<string>('main');
 
     // timer
@@ -44,7 +56,7 @@ function App() {
     return (
         <>
             {display === 'main' && <MainWindow setDisplay={setDisplay} />}
-            {display === 'setting' && <Setting setDisplay={setDisplay}/>}
+            {display === 'setting' && <Setting setDisplay={setDisplay} />}
             {display === 'game' && (
                 <>
                     <Header

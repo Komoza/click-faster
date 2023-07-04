@@ -7,7 +7,6 @@
     justify-content: space-around;
 
     &__logo {
-        color: #fff;
         font-size: 64px;
         text-align: center;
     }
@@ -20,13 +19,13 @@
     &__new-game,
     &__setting {
         font-size: 32px;
-        color: #fff;
+        color: currentcolor;
         border: 0;
         background: none;
         cursor: pointer;
 
         &:hover {
-            color: rgba($color: #fff, $alpha: 0.8);
+            opacity: .8;
         }
     }
 }

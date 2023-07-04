@@ -18,13 +18,12 @@
         align-items: center;
         justify-content: space-between;
         width: 350px;
-        color: #fff;
+        // color: #fff;
 
         &-text {
             font-size: 32px;
         }
         &-number {
-            // width: 47px;
             font-size: 20px;
         }
     }
@@ -34,7 +33,7 @@
         align-items: center;
         justify-content: space-between;
         width: 350px;
-        color: #fff;
+        // color: #fff;
 
         &-switch {
             position: relative;
@@ -121,7 +120,7 @@
         color: #ba7bf6;
     }
     &__cancel {
-        color: #fff;
+        color: currentcolor;
     }
 }
 

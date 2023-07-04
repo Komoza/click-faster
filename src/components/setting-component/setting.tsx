@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { setTheme } from '../../App';
 
 interface SettingProps {
     setDisplay: React.Dispatch<React.SetStateAction<string>>;
@@ -9,7 +10,7 @@ interface Preference {
     theme: string;
 }
 
-let preference: Preference = localStorage.getItem('preference')
+export let preference: Preference = localStorage.getItem('preference')
     ? JSON.parse(String(localStorage.getItem('preference')))
     : {
           sound: 100,
@@ -42,6 +43,7 @@ export const Setting: React.FC<SettingProps> = ({ setDisplay }) => {
     const handleChangeTheme = (event: React.ChangeEvent<HTMLInputElement>) => {
         setIsDark(event.target.checked);
         preference.theme = !isDark ? 'dark' : 'light';
+        setTheme(preference.theme);
     };
 
     return (
@@ -51,7 +53,7 @@ export const Setting: React.FC<SettingProps> = ({ setDisplay }) => {
                 <div className="setting__value-wrap">
                     <input
                         type="range"
-                        min="1"
+                        min="0"
                         max="100"
                         value={soundValue}
                         onChange={(event) => handleSetSoundValue(event)}
@@ -92,10 +94,10 @@ export const Setting: React.FC<SettingProps> = ({ setDisplay }) => {
 
             <div className="setting__buttons-wrap">
                 <button onClick={applySettings} className="setting__apply">
-                    apply
+                    Apply
                 </button>
                 <button onClick={goToMain} className="setting__cancel">
-                    cancel
+                    Cancel
                 </button>
             </div>
         </div>
