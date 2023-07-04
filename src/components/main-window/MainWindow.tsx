@@ -5,6 +5,7 @@ interface MainProps {
 export const MainWindow: React.FC<MainProps> = ({ setDisplay }) => {
     const startNewGame = () => {
         setDisplay('game');
+        // setDisplay('setting game');
     };
     const goToSetting = () => {
         setDisplay('setting');

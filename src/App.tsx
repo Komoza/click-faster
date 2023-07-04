@@ -3,6 +3,7 @@ import { Header } from './components/header/header';
 import { GameField } from './components/game-field/GameField';
 import { MainWindow } from './components/main-window/MainWindow';
 import { Setting } from './components/setting-component/setting';
+import { SettingGame } from './components/setting-game/setting-game';
 
 interface Point {
     x: number | null;
@@ -66,6 +67,7 @@ function App() {
     return (
         <>
             {display === 'main' && <MainWindow setDisplay={setDisplay} />}
+            {display === 'setting game' && <SettingGame />}
             {display === 'setting' && <Setting setDisplay={setDisplay} />}
             {display === 'game' && (
                 <>
