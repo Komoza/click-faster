@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react';
+import { preference } from '../../App';
 
 interface Point {
     x: number | null;
@@ -113,7 +114,7 @@ export const GameField: React.FC<GameFieldProps> = ({
     return (
         <div
             ref={gameFieldRef}
-            className="game-field"
+            className={`game-field --${preference.theme}-theme`}
             onClick={(event) => mistake(event)}
         >
             {isClick && (

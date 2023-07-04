@@ -3,12 +3,20 @@ import { Header } from './components/header/header';
 import { GameField } from './components/game-field/GameField';
 import { MainWindow } from './components/main-window/MainWindow';
 import { Setting } from './components/setting-component/setting';
-import { preference } from './components/setting-component/setting';
 
 interface Point {
     x: number | null;
     y: number | null;
 }
+interface Preference {
+    sound: number;
+    theme: string;
+}
+
+export let preference: Preference = {
+    sound: 100,
+    theme: 'dark',
+};
 
 export const setTheme = (theme: string) => {
     const root = document.getElementById('root');
@@ -21,6 +29,8 @@ export const setTheme = (theme: string) => {
 };
 
 function App() {
+    if (localStorage.getItem('preference'))
+        preference = JSON.parse(String(localStorage.getItem('preference')));
     setTheme(preference.theme);
     const [display, setDisplay] = useState<string>('main');
 

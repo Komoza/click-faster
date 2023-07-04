@@ -1,21 +1,10 @@
 import { useState } from 'react';
 import { setTheme } from '../../App';
+import { preference } from '../../App';
 
 interface SettingProps {
     setDisplay: React.Dispatch<React.SetStateAction<string>>;
 }
-
-interface Preference {
-    sound: number;
-    theme: string;
-}
-
-export let preference: Preference = localStorage.getItem('preference')
-    ? JSON.parse(String(localStorage.getItem('preference')))
-    : {
-          sound: 100,
-          theme: 'dark',
-      };
 
 export const Setting: React.FC<SettingProps> = ({ setDisplay }) => {
     const [soundValue, setSoundValue] = useState<number>(preference.sound);
@@ -24,7 +13,6 @@ export const Setting: React.FC<SettingProps> = ({ setDisplay }) => {
     );
 
     const goToMain = () => {
-        preference = JSON.parse(String(localStorage.getItem('preference')));
         setDisplay('main');
     };
 
